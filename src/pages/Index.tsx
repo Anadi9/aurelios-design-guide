@@ -7,6 +7,8 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 
 const Index = () => {
+  console.log("Index page is loading...");
+  
   return (
     <div className="min-h-screen bg-background">
       <Header />
