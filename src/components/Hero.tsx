@@ -24,7 +24,7 @@ const Hero = () => {
                 <div className="space-y-6">
                   <div className="flex items-center gap-3 text-sm text-brand-purple font-medium mb-4">
                     <div className="w-2 h-2 bg-brand-purple rounded-full animate-pulse"></div>
-                    <span>MVP & Startup Specialists</span>
+                    <span><span className="font-[700] text-[18px]">A</span>utomating <span className="font-[700] text-[18px]">N</span>ext-Gen <span className="font-[700] text-[18px]">T</span>imeless <span className="font-[700] text-[18px]">A</span>rchitecture</span>
                   </div>
                   
                   <h1 className="text-6xl md:text-8xl font-bold tracking-tight font-righteous">
@@ -61,7 +61,7 @@ const Hero = () => {
                       <div>$ npm run mvp</div>
                       <div className="text-white">✓ Building MVP...</div>
                       <div className="text-white">✓ Validating features...</div>
-                      <div className="text-white">✓ Deploying to Vercel...</div>
+                      <div className="text-white">✓ Deploying to Production...</div>
                       <div className="text-green-400">✓ MVP launched in 2 weeks!</div>
                     </div>
                   </div>
