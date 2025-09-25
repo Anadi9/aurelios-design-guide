@@ -24,17 +24,13 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // Check localStorage first, then system preference
+    // Check localStorage first
     const savedTheme = localStorage.getItem('theme') as Theme;
     if (savedTheme) {
       return savedTheme;
     }
     
-    // Check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    
+    // Default to light mode on first load
     return 'light';
   });
 
@@ -71,14 +67,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }, 50);
   }, [theme]);
 
-  // Listen for system theme changes
+  // Listen for system theme changes (only if user hasn't set a preference)
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
     const handleChange = (e: MediaQueryListEvent) => {
       // Only update if user hasn't set a preference
       if (!localStorage.getItem('theme')) {
-        setThemeState(e.matches ? 'dark' : 'light');
+        // Still default to light mode even if system changes
+        setThemeState('light');
       }
     };
 
