@@ -55,9 +55,17 @@ export default {
 				surface: {
 					DEFAULT: 'hsl(var(--surface))',
 					foreground: 'hsl(var(--surface-foreground))'
+				},
+				// Brand colors
+				brand: {
+					navy: 'hsl(var(--brand-navy))',
+					pink: 'hsl(var(--brand-pink))',
+					purple: 'hsl(var(--brand-purple))',
+					white: 'hsl(var(--brand-white))'
 				}
 			},
 			backgroundImage: {
+				'gradient-brand': 'linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-middle)), hsl(var(--gradient-end)))',
 				'gradient-rainbow': 'linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-middle)), hsl(var(--gradient-end)))',
 			},
 			borderRadius: {

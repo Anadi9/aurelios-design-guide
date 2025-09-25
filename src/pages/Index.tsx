@@ -1,10 +1,10 @@
-// Update this page (the content is just a fallback if you fail to update the page)
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Pricing from "@/components/Pricing";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   console.log("Index page is loading...");
@@ -14,6 +14,9 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <div id="pricing">
+          <Pricing />
+        </div>
         <div id="services">
           <Services />
         </div>
@@ -24,6 +27,7 @@ const Index = () => {
           <Contact />
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
