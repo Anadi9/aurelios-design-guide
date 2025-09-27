@@ -12,7 +12,7 @@ const Header = () => {
 
   const navigation = [
     { name: "Services", href: "#services", icon: Settings },
-    { name: "About", href: "#about", icon: Info },
+    { name: "About", href: "/about", icon: Info },
     { name: "Pricing", href: "#pricing", icon: DollarSign },
     { name: "Contact", href: "#contact", icon: MessageCircle }
   ];
@@ -36,14 +36,25 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
-              >
-                <item.icon className="w-4 h-4" />
-                {item.name}
-              </a>
+              item.href.startsWith('#') ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.name}
+                </a>
+              ) : (
+                <button
+                  key={item.name}
+                  onClick={() => navigate(item.href)}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.name}
+                </button>
+              )
             ))}
             
             {/* Theme Switch Button */}
@@ -87,15 +98,29 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-4 border-t border-border pt-4">
             {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <item.icon className="w-4 h-4" />
-                {item.name}
-              </a>
+              item.href.startsWith('#') ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.name}
+                </a>
+              ) : (
+                <button
+                  key={item.name}
+                  onClick={() => {
+                    navigate(item.href);
+                    setIsMenuOpen(false);
+                  }}
+                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2 w-full text-left"
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.name}
+                </button>
+              )
             ))}
             <div className="flex flex-col gap-3 mt-6 pt-4 border-t border-border">
               <Button

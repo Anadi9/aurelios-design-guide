@@ -1,164 +1,209 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Code2, Award, Users, Rocket, Shield, Zap, Database, Cpu, Brain, Cloud, Lock } from "lucide-react";
-
-const stats = [
-  { icon: Code2, number: "30+", label: "MVPs Launched", description: "From idea to market" },
-  { icon: Award, number: "5+", label: "Years Startup Focus", description: "Specialized in early-stage" },
-  { icon: Users, number: "50+", label: "Startups Helped", description: "From garage to growth" },
-  { icon: Rocket, number: "2-4", label: "Weeks to MVP", description: "Fast validation cycles" }
-];
-
-const technologies = [
-  "JavaScript", "TypeScript", "React", "Node.js", "Express", "MongoDB",
-  "Python", "TensorFlow", "LangChain", "OpenAI", "AWS", "Docker",
-  "Next.js", "PostgreSQL", "Redis", "WebSockets", "REST APIs", "GraphQL"
-];
+import { Shield, Zap, Database, Cpu, Brain, Cloud, Lock } from "lucide-react";
 
 const expertise = [
-  { icon: Brain, title: "MVP Strategy", description: "Validate ideas quickly" },
-  { icon: Zap, title: "Rapid Prototyping", description: "Build fast, iterate faster" },
-  { icon: Database, title: "Startup Analytics", description: "Data-driven decisions" },
-  { icon: Cpu, title: "Scalable Architecture", description: "Grow without breaking" },
-  { icon: Cloud, title: "Cost-Effective Deploy", description: "Start small, scale smart" },
-  { icon: Shield, title: "Startup Security", description: "Secure from day one" }
+  { icon: Brain, title: "Product Strategy", description: "Define clear roadmaps" },
+  { icon: Zap, title: "Rapid Development", description: "Build fast, iterate faster" },
+  { icon: Database, title: "Data Solutions", description: "Analytics and insights" },
+  { icon: Cpu, title: "Modern Architecture", description: "Scalable and maintainable" },
+  { icon: Cloud, title: "Cloud Deployment", description: "Reliable and cost-effective" },
+  { icon: Shield, title: "Security First", description: "Built-in protection" }
 ];
 
 const About = () => {
   return (
-    <section id="about" className="pb-20 px-6 relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
+    <section id="about" className="py-32 px-6 relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
       {/* Background Tech Pattern */}
       <div className="absolute inset-0 opacity-3">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(59,130,246)_1px,transparent_0)] bg-[length:32px_32px]"></div>
       </div>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-[1400px] mx-auto relative z-10">
+        {/* Hero Section with Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
           <div className="space-y-8">
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 text-sm text-brand-purple font-medium">
-                <div className="w-2 h-2 bg-brand-purple rounded-full animate-pulse"></div>
-                <span>Startup Specialists</span>
-              </div>
-              
-              <h2 className="text-4xl md:text-5xl font-bold font-righteous">
-                <span className="block text-foreground">From</span>
-                <span className="block bg-gradient-brand bg-clip-text text-transparent">
-                  Idea to IPO
-                </span>
-                <span className="block text-brand-purple text-2xl md:text-3xl font-normal">
-                  We Build Startups
-                </span>
-              </h2>
-              
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                We're not just developers - we're your technical co-founders. We help startups 
-                validate ideas with MVPs, scale with smart architecture, and grow into enterprise 
-                solutions. From garage to IPO, we're with you every step.
-              </p>
+            <div className="flex items-center gap-4 text-lg text-brand-purple font-medium">
+              <div className="w-3 h-3 bg-brand-purple rounded-full animate-pulse"></div>
+              <span>Digital Product Experts</span>
             </div>
-
-            {/* Expertise Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {expertise.map((item, index) => (
-                <div key={index} className="flex items-center gap-3 p-4 rounded-lg bg-card border hover:shadow-md transition-shadow">
-                  <div className="p-2 bg-brand-purple/10 rounded-lg">
-                    <item.icon className="w-5 h-5 text-purple-400" />
-                  </div>
-                  <div>
-                    <div className="font-medium text-sm">{item.title}</div>
-                    <div className="text-xs text-muted-foreground">{item.description}</div>
-                  </div>
-                </div>
-              ))}
+            
+            <h1 className="text-6xl md:text-8xl font-bold font-righteous leading-tight">
+              <span className="block text-foreground">Building</span>
+              <span className="block bg-gradient-brand bg-clip-text text-transparent">
+                Digital Solutions
+              </span>
+              <span className="block text-brand-purple text-4xl md:text-5xl font-normal">
+                That Actually Work
+              </span>
+            </h1>
+            
+            <p className="text-2xl text-muted-foreground leading-relaxed max-w-2xl">
+              We're a team of experienced developers and designers who specialize in creating 
+              digital products that solve real problems. From web applications to mobile apps, 
+              we focus on building solutions that are both functional and beautiful.
+            </p>
+          </div>
+          
+          <div className="relative">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                alt="Team collaboration" 
+                className="w-full h-full object-cover"
+              />
             </div>
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-brand-purple to-brand-pink rounded-2xl shadow-xl"></div>
+          </div>
+        </div>
 
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-3">Technology Stack</h3>
-                <div className="flex flex-wrap gap-2">
-                  {technologies.map((tech, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs bg-card border-border">
-                      {tech}
-                    </Badge>
+        {/* Technology Stack - Interactive Design */}
+        <div className="mb-32">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold font-righteous mb-6">
+              <span className="bg-gradient-brand bg-clip-text text-transparent">Technology Stack</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              We use the latest tools and technologies to build modern, scalable solutions.
+            </p>
+          </div>
+          
+          {/* Full Width Tech Stack Visualization */}
+          <div className="relative w-full">
+            {/* Full Width Transparent Container */}
+            <div className="relative w-full h-[500px] bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/5 via-transparent to-blue-500/5"></div>
+              
+              {/* Technology Icons Grid */}
+              <div className="absolute inset-0 p-8">
+                <div className="grid grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-4 h-full">
+                  {[
+                    { name: "React", icon: "https://img.icons8.com/color/48/react-native.png", delay: 0 },
+                    { name: "Next.js", icon: "https://img.icons8.com/color/48/nextjs.png", delay: 0.1 },
+                    { name: "TypeScript", icon: "https://img.icons8.com/color/48/typescript.png", delay: 0.2 },
+                    { name: "JavaScript", icon: "https://img.icons8.com/color/48/javascript.png", delay: 0.3 },
+                    { name: "Tailwind", icon: "https://img.icons8.com/color/48/tailwindcss.png", delay: 0.4 },
+                    { name: "Framer", icon: "https://img.icons8.com/color/48/framer.png", delay: 0.5 },
+                    { name: "Vue.js", icon: "https://img.icons8.com/color/48/vue-js.png", delay: 0.6 },
+                    { name: "Angular", icon: "https://img.icons8.com/color/48/angularjs.png", delay: 0.7 },
+                    { name: "Svelte", icon: "https://img.icons8.com/color/48/svelte.png", delay: 0.8 },
+                    { name: "Nuxt.js", icon: "https://img.icons8.com/color/48/nuxt-js.png", delay: 0.9 },
+                    
+                    { name: "Node.js", icon: "https://img.icons8.com/color/48/nodejs.png", delay: 1.0 },
+                    { name: "Python", icon: "https://img.icons8.com/color/48/python.png", delay: 1.1 },
+                    { name: "PostgreSQL", icon: "https://img.icons8.com/color/48/postgreesql.png", delay: 1.2 },
+                    { name: "MongoDB", icon: "https://img.icons8.com/color/48/mongodb.png", delay: 1.3 },
+                    { name: "Express", icon: "https://img.icons8.com/color/48/express-js.png", delay: 1.4 },
+                    { name: "FastAPI", icon: "https://img.icons8.com/color/48/fastapi.png", delay: 1.5 },
+                    { name: "Django", icon: "https://img.icons8.com/color/48/django.png", delay: 1.6 },
+                    { name: "Flask", icon: "https://img.icons8.com/color/48/flask.png", delay: 1.7 },
+                    { name: "Redis", icon: "https://img.icons8.com/color/48/redis.png", delay: 1.8 },
+                    { name: "MySQL", icon: "https://img.icons8.com/color/48/mysql.png", delay: 1.9 },
+                    
+                    { name: "AWS", icon: "https://img.icons8.com/color/48/amazon-web-services.png", delay: 2.0 },
+                    { name: "Docker", icon: "https://img.icons8.com/color/48/docker.png", delay: 2.1 },
+                    { name: "Kubernetes", icon: "https://img.icons8.com/color/48/kubernetes.png", delay: 2.2 },
+                    { name: "GraphQL", icon: "https://img.icons8.com/color/48/graphql.png", delay: 2.3 },
+                    { name: "GitLab", icon: "https://img.icons8.com/color/48/gitlab.png", delay: 2.4 },
+                    { name: "GitHub", icon: "https://img.icons8.com/color/48/github.png", delay: 2.5 },
+                    { name: "Vercel", icon: "https://img.icons8.com/color/48/vercel.png", delay: 2.6 },
+                    { name: "Netlify", icon: "https://img.icons8.com/color/48/netlify.png", delay: 2.7 },
+                    { name: "Firebase", icon: "https://img.icons8.com/color/48/firebase.png", delay: 2.8 },
+                    { name: "Supabase", icon: "https://img.icons8.com/color/48/supabase.png", delay: 2.9 }
+                  ].map((tech, index) => (
+                    <div
+                      key={index}
+                      className="group relative flex items-center justify-center"
+                    >
+                      {/* Tech Icon Card */}
+                      <div className="w-16 h-16 rounded-2xl bg-white/80 backdrop-blur-md border border-white/40 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <img 
+                          src={tech.icon} 
+                          alt={tech.name} 
+                          className="w-10 h-10 object-contain"
+                        />
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-brand-purple/20 to-brand-pink/20 rounded-2xl backdrop-blur-sm animate-pulse"></div>
+              <div className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl backdrop-blur-sm animate-pulse delay-1000"></div>
+              <div className="absolute top-1/2 left-4 w-8 h-8 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg backdrop-blur-sm animate-pulse delay-500"></div>
             </div>
-          </div>
-
-          <div className="space-y-8">
-            {/* Enhanced Stats Grid */}
-            <div className="grid grid-cols-2 gap-6 mt-40">
-              {stats.map((stat, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border/50">
-                  <CardContent className="p-6 text-center space-y-4">
-                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                      <stat.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <div className="space-y-1">
-                      <div className="text-3xl font-bold text-foreground">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm font-medium text-foreground">
-                        {stat.label}
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        {stat.description}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Enhanced Value Proposition */}
-            <Card className="p-8 bg-gradient-to-br from-card to-card/50 border-border/50">
-              <CardContent className="p-0 space-y-6">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-bold">Why Startups Choose Us?</h3>
-                  <p className="text-muted-foreground">
-                    We understand the startup journey and build accordingly
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 gap-4">
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-brand-purple/5 border border-brand-purple/10">
-                    <div className="w-2 h-2 rounded-full bg-brand-purple mt-2 flex-shrink-0 animate-pulse" />
-                    <div>
-                      <div className="font-medium text-sm">Startup-First Approach</div>
-                      <div className="text-xs text-muted-foreground">Built for speed, budget, and validation</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-brand-pink/5 border border-brand-pink/10">
-                    <div className="w-2 h-2 rounded-full bg-brand-pink mt-2 flex-shrink-0 animate-pulse" />
-                    <div>
-                      <div className="font-medium text-sm">Technical Co-Founders</div>
-                      <div className="text-xs text-muted-foreground">We think like founders, not just developers</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/10">
-                    <div className="w-2 h-2 rounded-full bg-green-500 mt-2 flex-shrink-0 animate-pulse" />
-                    <div>
-                      <div className="font-medium text-sm">Equity-Friendly</div>
-                      <div className="text-xs text-muted-foreground">Flexible payment options for early-stage</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-brand-navy/5 border border-brand-navy/10">
-                    <div className="w-2 h-2 rounded-full bg-brand-navy mt-2 flex-shrink-0 animate-pulse" />
-                    <div>
-                      <div className="font-medium text-sm">Scale-Ready Architecture</div>
-                      <div className="text-xs text-muted-foreground">Built to grow from MVP to enterprise</div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
+
+        {/* Expertise Section - Fullscreen Image with Overlay Cards */}
+        <div className="mb-22">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold font-righteous mb-6">
+              <span className="bg-gradient-brand bg-clip-text text-transparent">Our Expertise</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              We bring together technical skills and creative thinking to deliver exceptional results.
+            </p>
+          </div>
+          
+          {/* Fullscreen Image with Overlay */}
+          <div className="relative h-[700px] rounded-3xl overflow-hidden shadow-2xl">
+            {/* Background Image */}
+            <img 
+              src="/src/assets/images/expertise-bg.jpg" 
+              alt="Our expertise background" 
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/40 via-transparent to-blue-500/30"></div>
+            
+            {/* Expertise Cards - Positioned on Right Side */}
+            <div className="absolute inset-0 flex items-center justify-end p-8">
+              <div className="w-full max-w-md space-y-4">
+                {expertise.map((item, index) => (
+                  <div key={index} className="group relative">
+                    <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/40 shadow-xl hover:shadow-2xl hover:shadow-brand-purple/30 transition-all duration-500 hover:-translate-x-2 hover:scale-105">
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 rounded-xl bg-gradient-to-br from-brand-purple/30 to-blue-500/30 group-hover:from-brand-purple/50 group-hover:to-blue-500/50 transition-all duration-300 shadow-lg">
+                          <item.icon className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-base font-bold text-gray-800 mb-1 group-hover:text-brand-purple transition-colors duration-300">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 leading-relaxed">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-brand-purple/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Left Side Content */}
+            <div className="absolute inset-0 flex items-center justify-start p-8">
+              <div className="max-w-lg">
+                <div className="p-8 rounded-2xl bg-black/60 backdrop-blur-md border border-white/20">
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    Building the Future
+                  </h3>
+                  <p className="text-lg text-white/90 leading-relaxed">
+                    Our expertise spans across modern technologies and methodologies, 
+                    enabling us to deliver exceptional digital solutions that drive real results.
+                  </p>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+
       </div>
     </section>
   );

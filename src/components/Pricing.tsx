@@ -74,15 +74,8 @@ const Pricing = () => {
     }
   ];
 
-const startupFeatures = [
-  { icon: Shield, title: "Startup-First", description: "Built for your journey" },
-  { icon: Clock, title: "Fast MVP", description: "2-4 weeks to launch" },
-  { icon: Star, title: "Quality Code", description: "Scalable from day one" },
-  { icon: Users, title: "Founder Support", description: "We're your tech co-founders" }
-];
-
   return (
-    <section id="pricing" className="py-20 px-6 relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
+    <section id="pricing" className="pt-20 px-6 relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
       {/* Background Tech Pattern */}
       <div className="absolute inset-0 opacity-3">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(59,130,246)_1px,transparent_0)] bg-[length:44px_44px]"></div>
@@ -110,21 +103,6 @@ const startupFeatures = [
             No enterprise complexity, no hidden fees. We understand startup budgets and offer 
             flexible pricing that grows with your business. From MVP to scale-up, we're here for the journey.
           </p>
-        </div>
-
-        {/* Startup Features Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {startupFeatures.map((feature, index) => (
-            <div key={index} className="flex flex-col items-center gap-3 p-6 rounded-lg bg-card border hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-lg bg-brand-purple/10 flex items-center justify-center">
-                <feature.icon className="w-6 h-6 text-brand-purple" />
-              </div>
-              <div className="text-center">
-                <div className="font-medium text-sm">{feature.title}</div>
-                <div className="text-xs text-muted-foreground">{feature.description}</div>
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Pricing Cards */}
@@ -186,44 +164,6 @@ const startupFeatures = [
           ))}
         </div>
 
-        {/* Startup CTA */}
-        <div className="text-center">
-          <Card className="p-8 bg-gradient-to-br from-card to-card/50 border-border/50 max-w-4xl mx-auto">
-            <CardContent className="p-0 space-y-6">
-              <div className="space-y-2">
-                <h3 className="text-3xl font-bold">Need a Custom Solution?</h3>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Every startup is unique. If you don't see exactly what you need, let's chat! 
-                  We offer flexible pricing, equity partnerships, and custom solutions for your startup journey.
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-                <div className="text-center p-4 rounded-lg bg-brand-purple/5 border border-brand-purple/10">
-                  <div className="text-2xl font-bold text-brand-purple mb-1">Equity</div>
-                  <div className="text-sm text-muted-foreground">Partnerships</div>
-                </div>
-                <div className="text-center p-4 rounded-lg bg-green-500/5 border border-green-500/10">
-                  <div className="text-2xl font-bold text-green-500 mb-1">Flexible</div>
-                  <div className="text-sm text-muted-foreground">Payment Terms</div>
-                </div>
-                <div className="text-center p-4 rounded-lg bg-brand-navy/5 border border-brand-navy/10">
-                  <div className="text-2xl font-bold text-brand-navy mb-1">Free</div>
-                  <div className="text-sm text-muted-foreground">Startup Consultation</div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="px-8 py-3 bg-brand-navy text-white rounded-lg hover:bg-brand-navy/90 transition-colors font-medium">
-                  Free Startup Chat
-                </Button>
-                <Button variant="outline" className="px-8 py-3 border border-brand-purple text-brand-purple rounded-lg hover:bg-brand-purple hover:text-white transition-colors font-medium">
-                  Discuss Equity Options
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </section>
   );

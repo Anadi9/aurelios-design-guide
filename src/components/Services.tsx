@@ -64,7 +64,7 @@ const Services = () => {
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center space-y-6 mb-20">
+        <div className="text-center space-y-6 mb-10">
           <div className="flex items-center justify-center gap-3 text-sm text-brand-purple font-medium">
             <div className="w-2 h-2 bg-brand-purple rounded-full animate-pulse"></div>
             <span>MVP & Startup Services</span>
@@ -89,100 +89,104 @@ const Services = () => {
         {/* Startup Features Bar */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
           {startupFeatures.map((feature, index) => (
-            <div key={index} className="flex flex-col items-center gap-3 p-4 rounded-lg bg-card border hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-lg bg-brand-purple/10 flex items-center justify-center">
-                <feature.icon className="w-6 h-6 text-purple-400" />
-              </div>
-              <div className="text-center">
-                <div className="font-medium text-sm">{feature.title}</div>
-                <div className="text-xs text-muted-foreground">{feature.description}</div>
+            <div key={index} className="group relative">
+              {/* Card Container */}
+              <div className="relative p-4 rounded-xl bg-white/60 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-2xl hover:shadow-brand-purple/10 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                {/* Animated Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Floating Particles Effect */}
+                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-brand-purple/30 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500"></div>
+                <div className="absolute bottom-2 left-2 w-1 h-1 bg-blue-500/40 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+                
+                {/* Icon Container */}
+                <div className="relative mb-3">
+                  <div className="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-brand-purple/10 to-blue-500/10 flex items-center justify-center group-hover:from-brand-purple/20 group-hover:to-blue-500/20 transition-all duration-500 relative overflow-hidden">
+                    {/* Icon Background Glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    {/* Icon */}
+                    <feature.icon className="w-6 h-6 text-brand-purple group-hover:text-brand-purple/80 relative z-10 group-hover:scale-110 transition-all duration-500" />
+                    
+                    {/* Hover Ring Effect */}
+                    <div className="absolute inset-0 rounded-xl border-2 border-brand-purple/20 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+                  </div>
+                </div>
+                
+                {/* Content */}
+                <div className="text-center space-y-1 relative z-10">
+                  <h3 className="font-semibold text-xs text-gray-800 group-hover:text-brand-purple transition-colors duration-300 leading-tight">
+                    {feature.title}
+                  </h3>
+                  <p className="text-xs text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+                
+                {/* Bottom Accent Line */}
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-purple to-blue-500 group-hover:w-6 transition-all duration-500 rounded-full"></div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Services Grid - Browser Style Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <Card key={index} className="group hover:shadow-2xl transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
-              <CardHeader className="pb-4">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
-                    <service.icon className="w-8 h-8 text-white" />
+            <div key={index} className="bg-white w-full max-w-sm h-80 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-105 pb-6">
+              {/* Browser-style header with colored dots */}
+              <div className="flex p-2 gap-1">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              
+              {/* Card Content */}
+              <div className="card__content p-4 h-full flex flex-col">
+                {/* Service Icon and Title */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                    <service.icon className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <CardTitle className="text-xl group-hover:text-brand-purple transition-colors">
+                    <h3 className="text-base font-bold text-gray-800 group-hover:text-brand-purple transition-colors duration-300 leading-tight">
                       {service.title}
-                    </CardTitle>
+                    </h3>
+                    <div className="flex items-center gap-1 mt-1">
+                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-green-600 font-medium">Startup Ready</span>
+                    </div>
                   </div>
                 </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-6">
-                <p className="text-muted-foreground leading-relaxed">
+                
+                {/* Description */}
+                <p className="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
                   {service.description}
                 </p>
                 
-                <div className="space-y-3">
-                  <div className="text-sm font-medium text-foreground">Key Capabilities</div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-brand-purple flex-shrink-0" />
-                        <span className="text-xs">{feature}</span>
-                      </div>
+                {/* Key Features as Tags */}
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-gray-700 mb-2">Key Features</div>
+                  <div className="flex flex-wrap gap-2">
+                    {service.features.slice(0, 4).map((feature, idx) => (
+                      <span key={idx} className="inline-block px-3 py-1 bg-gradient-to-r from-brand-purple/10 to-transparent text-xs font-medium text-gray-700 border border-brand-purple/20 rounded-md">
+                        {feature}
+                      </span>
                     ))}
+                    {service.features.length > 4 && (
+                      <span className="inline-block px-3 py-1 bg-gray-100 text-xs font-medium text-gray-500 rounded-md">
+                        +{service.features.length - 4}
+                      </span>
+                    )}
                   </div>
                 </div>
                 
-                <div className="pt-4 border-t border-border/50">
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>Startup Ready</span>
-                    <span className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      <span>2-4 Weeks</span>
-                    </span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                
+              </div>
+            </div>
           ))}
         </div>
-
-        {/* Startup CTA */}
-        <div className="mt-20 text-center">
-          <Card className="p-8 bg-gradient-to-br from-card to-card/50 border-border/50">
-            <CardContent className="p-0 space-y-6">
-              <h3 className="text-2xl font-bold">Ready to Launch Your MVP?</h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Let's turn your startup idea into a working MVP that validates your concept 
-                and gets you to market fast. No enterprise complexity, just smart solutions.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-                <div className="text-center p-4 rounded-lg bg-brand-purple/5 border border-brand-purple/10">
-                  <div className="text-2xl font-bold text-brand-purple mb-1">2-4</div>
-                  <div className="text-sm text-muted-foreground">Weeks to MVP</div>
-                </div>
-                <div className="text-center p-4 rounded-lg bg-green-500/5 border border-green-500/10">
-                  <div className="text-2xl font-bold text-green-500 mb-1">$5K-15K</div>
-                  <div className="text-sm text-muted-foreground">MVP Budget</div>
-                </div>
-                <div className="text-center p-4 rounded-lg bg-brand-navy/5 border border-brand-navy/10">
-                  <div className="text-2xl font-bold text-brand-navy mb-1">Free</div>
-                  <div className="text-sm text-muted-foreground">Startup Chat</div>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="px-8 py-3 bg-brand-navy text-white rounded-lg hover:bg-brand-navy/90 transition-colors font-medium">
-                  Build Your MVP
-                </button>
-                <button className="px-8 py-3 border border-brand-purple text-brand-purple rounded-lg hover:bg-brand-purple hover:text-white transition-colors font-medium">
-                  Free Startup Chat
-                </button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        
       </div>
     </section>
   );
