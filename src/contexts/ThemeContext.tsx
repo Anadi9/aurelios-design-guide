@@ -23,16 +23,18 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    // Check localStorage first
+  const [theme, setThemeState] = useState<Theme>('light');
+  const [mounted, setMounted] = useState(false);
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true);
+    // Check localStorage after hydration
     const savedTheme = localStorage.getItem('theme') as Theme;
     if (savedTheme) {
-      return savedTheme;
+      setThemeState(savedTheme);
     }
-    
-    // Default to light mode on first load
-    return 'light';
-  });
+  }, []);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
@@ -44,6 +46,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
+    if (!mounted) return;
+    
     const root = document.documentElement;
     
     // Add transition class to prevent flash during theme switch
@@ -65,10 +69,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     setTimeout(() => {
       root.classList.remove('theme-transitioning');
     }, 50);
-  }, [theme]);
+  }, [theme, mounted]);
 
   // Listen for system theme changes (only if user hasn't set a preference)
   useEffect(() => {
+    if (!mounted) return;
+    
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
     const handleChange = (e: MediaQueryListEvent) => {
@@ -81,7 +87,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  }, [mounted]);
 
   const value: ThemeContextType = {
     theme,

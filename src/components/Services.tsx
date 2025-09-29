@@ -57,10 +57,15 @@ const startupFeatures = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 px-6 relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
-      {/* Background Tech Pattern */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(59,130,246)_1px,transparent_0)] bg-[length:40px_40px]"></div>
+    <section id="services" className="py-20 px-6 relative overflow-hidden">
+      {/* Full Width Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src="/images/bg-hero.jpg" 
+          alt="Services background" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/80"></div>
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">

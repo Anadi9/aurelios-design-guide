@@ -1,9 +1,12 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Database, Bot, Sparkles, Terminal, Cpu, Layers, GitBranch, Zap, Award, Rocket } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowRight, Code, Database, Bot, Sparkles, Cpu, Layers, GitBranch, Zap, Award, Rocket } from "lucide-react";
+import { useRouter } from "next/navigation";
+import Terminal from "./ui/terminal";
 
 const Hero = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
@@ -51,21 +54,7 @@ const Hero = () => {
               <div className="relative">
                 <div className="relative bg-gradient-to-br from-card to-card/50 rounded-3xl p-8 border shadow-2xl">
                   {/* Terminal Window */}
-                  <div className="bg-brand-navy rounded-2xl p-6 font-mono text-base">
-                    <div className="flex items-center gap-2 mb-6">
-                      <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                      <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
-                      <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                      <span className="text-white/70 ml-4 text-sm">Terminal</span>
-                    </div>
-                    <div className="space-y-3 text-green-400">
-                      <div>$ npm run mvp</div>
-                      <div className="text-white">✓ Building MVP...</div>
-                      <div className="text-white">✓ Validating features...</div>
-                      <div className="text-white">✓ Deploying to Production...</div>
-                      <div className="text-green-400">✓ MVP launched in 2 weeks!</div>
-                    </div>
-                  </div>
+                  <Terminal />
 
                   {/* Floating Icons */}
                   <div className="absolute -top-6 -right-6 w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center shadow-xl animate-bounce" style={{ animationDuration: '3s' }}>
@@ -87,7 +76,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="text-lg px-12 py-6 bg-brand-navy hover:bg-brand-navy/90 text-white border-0 group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-                onClick={() => navigate('/start-project')}
+                onClick={() => router.push('/start-project')}
               >
                 Build Your MVP
                 <ArrowRight className="ml-3 w-5 h-5 transition-transform group-hover:translate-x-1" />

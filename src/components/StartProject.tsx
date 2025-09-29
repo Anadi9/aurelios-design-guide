@@ -1,163 +1,295 @@
+'use client'
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState } from "react";
-import { Check, Plus, ArrowRight, Award, Shield, Clock, Users, Rocket, ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Check, Plus, ArrowRight, Award, Shield, Clock, Users, Rocket, ArrowLeft, Sparkles, Zap, Target, Brain, Code, Palette, Database, Smartphone, Globe, ChevronRight, ChevronLeft, Star, Heart, TrendingUp, ShoppingCart } from "lucide-react";
 
 const StartProject = () => {
-  const navigate = useNavigate();
-
-  const [selectedServices, setSelectedServices] = useState<string[]>(["Web Application", "AI Features"]);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState({
+    services: [] as string[],
+    budget: "",
+    timeline: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    title: "",
+    description: "",
+    experience: "",
+    goals: [] as string[]
+  });
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const services = [
-    "Web Application",
-    "AI Features",
-    "Data Dashboard",
-    "Mobile App",
-    "E-commerce Site",
-    "API Development",
-    "Performance Optimization",
-    "Security Setup",
-    "Database Design",
-    "Real-time Features",
-    "Custom Solution"
+    { name: "Web Application", icon: Globe, color: "blue", description: "Modern web apps" },
+    { name: "AI Features", icon: Brain, color: "purple", description: "Smart automation" },
+    { name: "Data Dashboard", icon: TrendingUp, color: "green", description: "Analytics & insights" },
+    { name: "Mobile App", icon: Smartphone, color: "pink", description: "iOS & Android" },
+    { name: "E-commerce", icon: ShoppingCart, color: "orange", description: "Online stores" },
+    { name: "API Development", icon: Code, color: "cyan", description: "Backend services" },
+    { name: "Performance", icon: Zap, color: "yellow", description: "Speed optimization" },
+    { name: "Security", icon: Shield, color: "red", description: "Data protection" },
+    { name: "Database", icon: Database, color: "indigo", description: "Data architecture" },
+    { name: "Real-time", icon: Target, color: "teal", description: "Live features" },
+    { name: "Custom", icon: Palette, color: "violet", description: "Unique solutions" }
+  ];
+
+  const goals = [
+    "Increase Revenue",
+    "Improve Efficiency", 
+    "Enhance User Experience",
+    "Scale Operations",
+    "Reduce Costs",
+    "Digital Transformation",
+    "Market Expansion",
+    "Innovation"
+  ];
+
+  const steps = [
+    { title: "What do you need?", subtitle: "Select your services" },
+    { title: "Tell us about you", subtitle: "Your contact details" },
+    { title: "Project specifications", subtitle: "Timeline & budget" },
+    { title: "Requirements & goals", subtitle: "Detailed project scope" },
+    { title: "Ready to proceed!", subtitle: "Review & submit" }
   ];
 
   const toggleService = (service: string) => {
-    setSelectedServices(prev =>
-      prev.includes(service)
-        ? prev.filter(s => s !== service)
-        : [...prev, service]
-    );
+    setFormData(prev => ({
+      ...prev,
+      services: prev.services.includes(service)
+        ? prev.services.filter(s => s !== service)
+        : [...prev.services, service]
+    }));
+  };
+
+  const toggleGoal = (goal: string) => {
+    setFormData(prev => ({
+      ...prev,
+      goals: prev.goals.includes(goal)
+        ? prev.goals.filter(g => g !== goal)
+        : [...prev.goals, goal]
+    }));
+  };
+
+  const nextStep = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentStep(prev => Math.min(prev + 1, steps.length - 1));
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const prevStep = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentStep(prev => Math.max(prev - 1, 0));
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const updateFormData = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   return (
     <section id="start-project" className="py-20 px-6 relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
-      {/* Background Tech Pattern */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(59,130,246)_1px,transparent_0)] bg-[length:48px_48px]"></div>
+      {/* Animated Background */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(59,130,246)_1px,transparent_0)] bg-[length:48px_48px] animate-pulse"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-purple/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-pink/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center space-y-6 mb-16">
-          
           <div className="flex items-center justify-center gap-3 text-sm text-brand-purple font-medium">
             <div className="w-2 h-2 bg-brand-purple rounded-full animate-pulse"></div>
             <span>Let's Build Together</span>
+            <Sparkles className="w-4 h-4 text-brand-purple animate-pulse" />
           </div>
 
           <h2 className="text-4xl md:text-6xl font-bold font-righteous">
-            <span className="block text-foreground">Ready to Start</span>
+            <span className="block text-foreground">Ready to Build</span>
             <span className="block bg-gradient-brand bg-clip-text text-transparent">
-              Your Project?
+              Your Solution?
             </span>
           </h2>
 
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Every great project starts with a conversation. Share your vision with us and let's
-            work together to bring your ideas to life with the right technology and approach.
+            You have a clear vision and requirements. Let's turn your well-defined project into a powerful solution with the right technology stack and development approach.
           </p>
         </div>
 
-        {/* Collaboration Benefits */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-          <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-card border hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-lg bg-brand-purple/10 flex items-center justify-center">
-              <Users className="w-6 h-6 text-purple-400" />
-            </div>
-            <div className="text-center">
-              <div className="font-medium text-sm">Collaborative Approach</div>
-              <div className="text-xs text-muted-foreground">We work with you</div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-card border hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center">
-              <Award className="w-6 h-6 text-green-400" />
-            </div>
-            <div className="text-center">
-              <div className="font-medium text-sm">Quality Focus</div>
-              <div className="text-xs text-muted-foreground">We care about details</div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-card border hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-lg bg-brand-navy/10 flex items-center justify-center">
-              <Clock className="w-6 h-6 text-blue-400" />
-            </div>
-            <div className="text-center">
-              <div className="font-medium text-sm">Responsive</div>
-              <div className="text-xs text-muted-foreground">Quick communication</div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-card border hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-lg bg-brand-pink/10 flex items-center justify-center">
-              <Rocket className="w-6 h-6 text-brand-pink" />
-            </div>
-            <div className="text-center">
-              <div className="font-medium text-sm">Fast Iteration</div>
-              <div className="text-xs text-muted-foreground">Quick feedback loops</div>
-            </div>
+        {/* Progress Indicator */}
+        <div className="flex items-center justify-center mb-12">
+          <div className="flex items-center space-x-4">
+            {steps.map((step, index) => (
+              <div key={index} className="flex items-center">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
+                  index <= currentStep 
+                    ? 'bg-brand-purple text-white shadow-lg' 
+                    : 'bg-muted text-muted-foreground'
+                }`}>
+                  {index < currentStep ? <Check className="w-5 h-5" /> : index + 1}
+                </div>
+                {index < steps.length - 1 && (
+                  <div className={`w-16 h-1 mx-2 rounded-full transition-all duration-300 ${
+                    index < currentStep ? 'bg-brand-purple' : 'bg-muted'
+                  }`} />
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Main Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-2xl">
-              {/* Service Selection */}
-              <div className="mb-12">
-                <h3 className="text-2xl font-bold mb-6">What Do You Need Help With?</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {services.map((service) => {
-                    const isSelected = selectedServices.includes(service);
-                    return (
-                      <button
-                        key={service}
-                        onClick={() => toggleService(service)}
-                        className={`flex items-center justify-center gap-2 p-4 rounded-lg border transition-all ${isSelected
-                            ? 'bg-brand-navy text-white border-brand-navy shadow-lg'
-                            : 'bg-card border-border hover:border-brand-purple hover:shadow-md'
+        {/* Main Form Container */}
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+            {/* Step Header */}
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold mb-2">{steps[currentStep].title}</h3>
+              <p className="text-muted-foreground">{steps[currentStep].subtitle}</p>
+            </div>
+
+            {/* Step Content */}
+            <div className={`transition-all duration-300 ${isAnimating ? 'opacity-0 transform translate-x-4' : 'opacity-100 transform translate-x-0'}`}>
+              {currentStep === 0 && (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {services.map((service) => {
+                      const isSelected = formData.services.includes(service.name);
+                      const IconComponent = service.icon;
+                      return (
+                        <button
+                          key={service.name}
+                          onClick={() => toggleService(service.name)}
+                          className={`group relative p-6 rounded-2xl border-2 transition-all duration-300 hover:scale-105 ${
+                            isSelected
+                              ? 'border-brand-purple bg-brand-purple/10 shadow-lg'
+                              : 'border-border hover:border-brand-purple/50 hover:shadow-md'
                           }`}
-                      >
-                        {isSelected ? (
-                          <Check className="w-5 h-5" />
-                        ) : (
-                          <Plus className="w-5 h-5" />
-                        )}
-                        <span className="text-sm font-medium">{service}</span>
-                      </button>
-                    );
-                  })}
+                        >
+                          <div className="flex flex-col items-center space-y-3">
+                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                              isSelected ? 'bg-brand-purple text-white' : `bg-${service.color}-100 text-${service.color}-600`
+                            }`}>
+                              <IconComponent className="w-6 h-6" />
+                            </div>
+                            <div className="text-center">
+                              <div className="font-medium text-sm">{service.name}</div>
+                              <div className="text-xs text-muted-foreground">{service.description}</div>
+                            </div>
+                            {isSelected && (
+                              <div className="absolute -top-2 -right-2 w-6 h-6 bg-brand-purple rounded-full flex items-center justify-center">
+                                <Check className="w-4 h-4 text-white" />
+                              </div>
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Project Description */}
-              <div className="mb-8">
-                <label className="block text-foreground text-lg font-semibold mb-4">
-                  Project Requirements *
-                </label>
-                <Textarea
-                  placeholder="Describe your enterprise project requirements, business goals, technical specifications, and any specific features you need..."
-                  className="w-full min-h-[140px] bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple"
-                />
-              </div>
+              {currentStep === 1 && (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-6">
+                      <div>
+                        <label className="block text-foreground text-sm font-medium mb-3">
+                          First Name *
+                        </label>
+                        <Input
+                          value={formData.firstName}
+                          onChange={(e) => updateFormData('firstName', e.target.value)}
+                          className="h-12 bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple rounded-xl"
+                          placeholder="Enter your first name"
+                        />
+                      </div>
 
-              {/* Form */}
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Left Column */}
-                  <div className="space-y-6">
+                      <div>
+                        <label className="block text-foreground text-sm font-medium mb-3">
+                          Last Name *
+                        </label>
+                        <Input
+                          value={formData.lastName}
+                          onChange={(e) => updateFormData('lastName', e.target.value)}
+                          className="h-12 bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple rounded-xl"
+                          placeholder="Enter your last name"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-foreground text-sm font-medium mb-3">
+                          Email Address *
+                        </label>
+                        <Input
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => updateFormData('email', e.target.value)}
+                          className="h-12 bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple rounded-xl"
+                          placeholder="Enter your email address"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div>
+                        <label className="block text-foreground text-sm font-medium mb-3">
+                          Phone Number *
+                        </label>
+                        <Input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => updateFormData('phone', e.target.value)}
+                          className="h-12 bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple rounded-xl"
+                          placeholder="Enter your phone number"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-foreground text-sm font-medium mb-3">
+                          Company Name *
+                        </label>
+                        <Input
+                          value={formData.company}
+                          onChange={(e) => updateFormData('company', e.target.value)}
+                          className="h-12 bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple rounded-xl"
+                          placeholder="Enter your company name"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-foreground text-sm font-medium mb-3">
+                          Your Title/Role *
+                        </label>
+                        <Input
+                          value={formData.title}
+                          onChange={(e) => updateFormData('title', e.target.value)}
+                          className="h-12 bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple rounded-xl"
+                          placeholder="e.g., CTO, VP Engineering, Product Manager"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {currentStep === 2 && (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
+                      <label className="block text-foreground text-sm font-medium mb-3">
                         Estimated Budget *
                       </label>
-                      <Select>
-                        <SelectTrigger className="bg-input border-border text-foreground focus:border-brand-purple">
+                      <Select value={formData.budget} onValueChange={(value) => updateFormData('budget', value)}>
+                        <SelectTrigger className="h-12 bg-input border-border text-foreground focus:border-brand-purple rounded-xl">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
@@ -171,45 +303,11 @@ const StartProject = () => {
                     </div>
 
                     <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
-                        First Name *
-                      </label>
-                      <Input
-                        className="bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple"
-                        placeholder="Enter your first name"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
-                        Email Address *
-                      </label>
-                      <Input
-                        type="email"
-                        className="bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple"
-                        placeholder="Enter your email address"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
-                        Company Name *
-                      </label>
-                      <Input
-                        className="bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple"
-                        placeholder="Enter your company name"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Right Column */}
-                  <div className="space-y-6">
-                    <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
+                      <label className="block text-foreground text-sm font-medium mb-3">
                         Estimated Timeline *
                       </label>
-                      <Select>
-                        <SelectTrigger className="bg-input border-border text-foreground focus:border-brand-purple">
+                      <Select value={formData.timeline} onValueChange={(value) => updateFormData('timeline', value)}>
+                        <SelectTrigger className="h-12 bg-input border-border text-foreground focus:border-brand-purple rounded-xl">
                           <SelectValue placeholder="Select timeline" />
                         </SelectTrigger>
                         <SelectContent>
@@ -221,135 +319,167 @@ const StartProject = () => {
                         </SelectContent>
                       </Select>
                     </div>
+                  </div>
 
-                    <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
-                        Last Name *
-                      </label>
-                      <Input
-                        className="bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple"
-                        placeholder="Enter your last name"
-                      />
+                  <div>
+                    <label className="block text-foreground text-sm font-medium mb-3">
+                      Detailed Project Requirements *
+                    </label>
+                    <Textarea
+                      value={formData.description}
+                      onChange={(e) => updateFormData('description', e.target.value)}
+                      placeholder="Provide detailed project requirements, technical specifications, business objectives, user stories, integration needs, and any specific features or functionality you require..."
+                      className="w-full min-h-[140px] bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple rounded-xl"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {currentStep === 3 && (
+                <div className="space-y-8">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-6">What are your main goals? (Select all that apply)</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {goals.map((goal) => {
+                        const isSelected = formData.goals.includes(goal);
+                        return (
+                          <button
+                            key={goal}
+                            onClick={() => toggleGoal(goal)}
+                            className={`p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 ${
+                              isSelected
+                                ? 'border-brand-purple bg-brand-purple/10 shadow-lg'
+                                : 'border-border hover:border-brand-purple/50 hover:shadow-md'
+                            }`}
+                          >
+                            <div className="flex items-center justify-center space-x-2">
+                              {isSelected ? (
+                                <Check className="w-5 h-5 text-brand-purple" />
+                              ) : (
+                                <Star className="w-5 h-5 text-muted-foreground" />
+                              )}
+                              <span className="text-sm font-medium">{goal}</span>
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
+                  </div>
 
-                    <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
-                        Phone Number *
-                      </label>
-                      <Input
-                        type="tel"
-                        className="bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple"
-                        placeholder="Enter your phone number"
-                      />
+                  <div>
+                    <label className="block text-foreground text-sm font-medium mb-3">
+                      Technical Background & Constraints
+                    </label>
+                    <Textarea
+                      value={formData.experience}
+                      onChange={(e) => updateFormData('experience', e.target.value)}
+                      placeholder="Tell us about your technical background, existing systems, integration requirements, security needs, performance expectations, and any technical constraints or preferences..."
+                      className="w-full min-h-[120px] bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple rounded-xl"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {currentStep === 4 && (
+                <div className="space-y-8">
+                  <div className="text-center mb-8">
+                    <div className="w-16 h-16 bg-brand-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Heart className="w-8 h-8 text-brand-purple" />
                     </div>
+                    <h4 className="text-2xl font-bold mb-2">Review Your Project Brief</h4>
+                    <p className="text-muted-foreground">Please review your project details before we proceed with development</p>
+                  </div>
 
+                  <div className="bg-muted/50 rounded-2xl p-6 space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <h5 className="font-semibold text-sm text-muted-foreground mb-2">Contact Information</h5>
+                        <p className="text-sm">{formData.firstName} {formData.lastName}</p>
+                        <p className="text-sm text-muted-foreground">{formData.email}</p>
+                        <p className="text-sm text-muted-foreground">{formData.phone}</p>
+                      </div>
+                      <div>
+                        <h5 className="font-semibold text-sm text-muted-foreground mb-2">Company Details</h5>
+                        <p className="text-sm">{formData.company}</p>
+                        <p className="text-sm text-muted-foreground">{formData.title}</p>
+                      </div>
+                    </div>
+                    
                     <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
-                        Your Title/Role *
-                      </label>
-                      <Input
-                        className="bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-brand-purple focus:ring-brand-purple"
-                        placeholder="e.g., CTO, VP Engineering, Product Manager"
-                      />
+                      <h5 className="font-semibold text-sm text-muted-foreground mb-2">Project Specifications</h5>
+                      <p className="text-sm">Services: {formData.services.join(', ')}</p>
+                      <p className="text-sm">Budget: {formData.budget}</p>
+                      <p className="text-sm">Timeline: {formData.timeline}</p>
+                      <p className="text-sm">Goals: {formData.goals.join(', ')}</p>
                     </div>
                   </div>
                 </div>
+              )}
+            </div>
 
-                {/* Submit Button */}
-                <div className="text-center pt-8">
-                  <Button
-                    type="submit"
-                    className="bg-brand-navy hover:bg-brand-navy/90 text-white px-12 py-4 text-lg font-medium shadow-lg hover:shadow-xl transition-all group"
-                  >
-                    <Award className="mr-2 w-5 h-5" />
-                    Submit Enterprise Proposal Request
-                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </div>
-              </form>
+            {/* Navigation */}
+            <div className="flex items-center justify-between mt-12 pt-8 border-t border-border/50">
+              <Button
+                onClick={prevStep}
+                disabled={currentStep === 0}
+                variant="outline"
+                className="flex items-center space-x-2 px-6 py-3 rounded-xl"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Previous</span>
+              </Button>
+
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-brand-purple rounded-full animate-pulse"></div>
+                <span className="text-sm text-muted-foreground">
+                  Step {currentStep + 1} of {steps.length}
+                </span>
+              </div>
+
+              {currentStep < steps.length - 1 ? (
+                <Button
+                  onClick={nextStep}
+                  className="flex items-center space-x-2 px-6 py-3 rounded-xl bg-brand-purple hover:bg-brand-purple/90"
+                >
+                  <span>Next</span>
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              ) : (
+                <Button
+                  className="flex items-center space-x-2 px-8 py-3 rounded-xl bg-brand-purple hover:bg-brand-purple/90 shadow-lg"
+                >
+                  <Rocket className="w-4 h-4" />
+                  <span>Start Development Process</span>
+                </Button>
+              )}
             </div>
           </div>
+        </div>
 
-          {/* Sidebar */}
-          <div className="space-y-8">
-            {/* Enterprise Guarantees */}
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6">
-              <div className="space-y-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-brand-purple flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold">Our Promise to You</h3>
-                    <p className="text-sm text-muted-foreground">What you can expect from working with us</p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-brand-purple/5 border border-brand-purple/10">
-                    <Clock className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-sm">Quick Response</div>
-                      <div className="text-xs text-muted-foreground">We'll get back to you fast</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/10">
-                    <Award className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-sm">Free Initial Chat</div>
-                      <div className="text-xs text-muted-foreground">No pressure, just helpful advice</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-brand-navy/5 border border-brand-navy/10">
-                    <Users className="w-4 h-4 text-blue-400 mt-1 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-sm">Direct Communication</div>
-                      <div className="text-xs text-muted-foreground">Work directly with the team</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        {/* Benefits Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+          <div className="text-center p-6 rounded-2xl bg-card/30 backdrop-blur-sm border border-border/30">
+            <div className="w-12 h-12 bg-brand-purple/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <Users className="w-6 h-6 text-brand-purple" />
             </div>
+            <h4 className="font-semibold mb-2">Professional Development</h4>
+            <p className="text-sm text-muted-foreground">Structured approach with clear milestones and deliverables</p>
+          </div>
 
-            {/* Process Steps */}
-            <div className="bg-card/30 backdrop-blur-sm border border-border/30 rounded-2xl p-6">
-              <h3 className="text-lg font-bold mb-6">Our Process</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-brand-purple flex items-center justify-center text-white text-xs font-bold">1</div>
-                  <div>
-                    <div className="font-medium text-sm">Initial Consultation</div>
-                    <div className="text-xs text-muted-foreground">Discuss requirements</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-brand-purple flex items-center justify-center text-white text-xs font-bold">2</div>
-                  <div>
-                    <div className="font-medium text-sm">Proposal & Timeline</div>
-                    <div className="text-xs text-muted-foreground">Detailed project plan</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-brand-purple flex items-center justify-center text-white text-xs font-bold">3</div>
-                  <div>
-                    <div className="font-medium text-sm">Development</div>
-                    <div className="text-xs text-muted-foreground">Agile development process</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-brand-purple flex items-center justify-center text-white text-xs font-bold">4</div>
-                  <div>
-                    <div className="font-medium text-sm">Deployment & Support</div>
-                    <div className="text-xs text-muted-foreground">Launch and maintain</div>
-                  </div>
-                </div>
-              </div>
+          <div className="text-center p-6 rounded-2xl bg-card/30 backdrop-blur-sm border border-border/30">
+            <div className="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <Award className="w-6 h-6 text-green-500" />
             </div>
+            <h4 className="font-semibold mb-2">Enterprise-Grade Quality</h4>
+            <p className="text-sm text-muted-foreground">Production-ready solutions with robust architecture</p>
+          </div>
+
+          <div className="text-center p-6 rounded-2xl bg-card/30 backdrop-blur-sm border border-border/30">
+            <div className="w-12 h-12 bg-brand-pink/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <Rocket className="w-6 h-6 text-brand-pink" />
+            </div>
+            <h4 className="font-semibold mb-2">Efficient Delivery</h4>
+            <p className="text-sm text-muted-foreground">Agile methodology with regular progress updates</p>
           </div>
         </div>
       </div>

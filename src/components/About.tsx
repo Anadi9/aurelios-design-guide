@@ -47,7 +47,7 @@ const About = () => {
           <div className="relative">
             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+              src="/images/about-us.png" 
                 alt="Team collaboration" 
                 className="w-full h-full object-cover"
               />
@@ -151,8 +151,8 @@ const About = () => {
           <div className="relative h-[700px] rounded-3xl overflow-hidden shadow-2xl">
             {/* Background Image */}
             <img 
-              src="/src/assets/images/expertise-bg.jpg" 
-              alt="Our expertise background" 
+              src="/images/3d-expert.jpg" 
+              alt="3D expert background" 
               className="w-full h-full object-cover"
             />
             
@@ -160,20 +160,20 @@ const About = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/40 via-transparent to-blue-500/30"></div>
             
             {/* Expertise Cards - Positioned on Right Side */}
-            <div className="absolute inset-0 flex items-center justify-end p-8">
+            <div className="absolute inset-0 flex items-center justify-start p-8">
               <div className="w-full max-w-md space-y-4">
                 {expertise.map((item, index) => (
                   <div key={index} className="group relative">
-                    <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/40 shadow-xl hover:shadow-2xl hover:shadow-brand-purple/30 transition-all duration-500 hover:-translate-x-2 hover:scale-105">
+                    <div className="p-5 rounded-2xl bg-black/60 backdrop-blur-md border border-white/40 shadow-xl hover:shadow-2xl hover:shadow-brand-purple/30 transition-all duration-500 hover:-translate-x-2 hover:scale-105">
                       <div className="flex items-center gap-4">
                         <div className="p-3 rounded-xl bg-gradient-to-br from-brand-purple/30 to-blue-500/30 group-hover:from-brand-purple/50 group-hover:to-blue-500/50 transition-all duration-300 shadow-lg">
                           <item.icon className="w-6 h-6 text-white" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-base font-bold text-gray-800 mb-1 group-hover:text-brand-purple transition-colors duration-300">
+                          <h3 className="text-base font-bold text-[#C20566] mb-1 group-hover:text-brand-purple transition-colors duration-300">
                             {item.title}
                           </h3>
-                          <p className="text-sm text-gray-600 leading-relaxed">
+                          <p className="text-sm text-gray-300 leading-relaxed">
                             {item.description}
                           </p>
                         </div>
@@ -187,10 +187,10 @@ const About = () => {
             </div>
             
             {/* Left Side Content */}
-            <div className="absolute inset-0 flex items-center justify-start p-8">
+            <div className="absolute inset-0 flex items-center justify-end p-8">
               <div className="max-w-lg">
-                <div className="p-8 rounded-2xl bg-black/60 backdrop-blur-md border border-white/20">
-                  <h3 className="text-3xl font-bold text-white mb-4">
+                <div className="p-4 rounded-2xl bg-black/60 backdrop-blur-md border border-white/20 mt-80">
+                  <h3 className="text-3xl font-bold text-[#C20566] mb-2">
                     Building the Future
                   </h3>
                   <p className="text-lg text-white/90 leading-relaxed">
